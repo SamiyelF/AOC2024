@@ -30,15 +30,22 @@ fn main() {
     }
     l.sort();
     r.sort();
-    let mut sum = 0;
+    let mut distances = 0;
     for (i,j) in l.iter().zip(r.iter()) {
-        sum += (i-j).abs();
+        distances += (i-j).abs();
     }
-    println!("{}",sum);
+    println!("Distance: {}",distances);
+    let mut similarity = 0;
+    for i in l{
+        let count = r.iter().filter(|&n| *n == i).count() as i32;
+        similarity += i * count;
+    }
+    println!("Similarity: {}", similarity);
 }
 /*explanation:
     First, we get the contents of the webpage.
     we split each index at the lines (23), and then split each list at the spaces (24-30)
     we sort the list, and add the distances.
+    similarity is self explanitory
     easy peasy!
 */
